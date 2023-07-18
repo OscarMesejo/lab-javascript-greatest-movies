@@ -2,28 +2,60 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-    return moviesArray.map(movie => {
-        return movie.director
+    // return moviesArray.map(movie => {
+    //     return movie.director
+    // })
+
+    // EX Marcel: 
+    const arrayOfDirectors = moviesArray.map(function(movie){
+    return movie.director
     })
+    return arrayOfDirectors
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
-    const dramaMovies = moviesArray.filter((movie)=> {
-        return movie.director.startsWith("Steven") && movie.genre.includes("drama");
+    // const dramaMovies = moviesArray.filter((movie)=> {
+    //     return movie.director.startsWith("Steven") && movie.genre.includes("drama");
+    // })
+    // return dramaMovies.length;
+
+ // EX Marcel 
+
+ if(moviesArray.length === 0){
+        return 0
+    }
+    const stevenSpielbergDramaMoviesArray = moviesArray.filter(function(movie){
+        return movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
     })
-    return dramaMovies.length;
-}
+    console.log(stevenSpielbergDramaMoviesArray);
+    return stevenSpielbergDramaMoviesArray.length;
+}   
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    const scoreIMBD = moviesArray.map((element)=>{
-       return element.score 
-    })
+    // const scoreIMBD = moviesArray.map((element)=>{
+    //    return element.score 
+    // })
+    // const totalScore = justScore.reduce((acc, element)=>{
+    //     return acc + element
+    // })
 
-    const totalScore = justScore.reduce((acc, element)=>{
-        return acc + element
-    })
+    // EX Marcel:
+    if(moviesArray.length === 0){
+        return 0
+    }
+  const scoresArray = moviesArray.map((movie)=>{
+    return movie.score
+  })
+  const scoresSum = scoresArray.reduce(function(acc, current){
+    if(current){
+        return acc + current 
+    } else{
+        return acc + 0
+    }
+  })
+  return Number((scoresSum / moviesArray.length).toFixed(2)) //Number = convertir 'string' en number
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
